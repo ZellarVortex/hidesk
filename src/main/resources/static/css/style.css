@@ -54,7 +54,7 @@ nav{
     align-items: center;
 }
 .nav-header{
-    justify-content: space-between;
+    justify-content: end;
     display: flex;
     align-items: center;
 }
@@ -71,7 +71,11 @@ nav{
     border-radius: 15px;
     transition: background-color 500ms;
 }
-
+.theme-switcher {
+    margin-left: 20px;
+    width: 5%;
+    user-select: none;
+}
 /* Футер */
 
 footer {

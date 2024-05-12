@@ -1,16 +1,12 @@
 var isWhiteText = localStorage.getItem('isWhiteText') === 'true';
 
-// Функция для установки темы
 function setTheme(isWhite) {
-    // Получаем все элементы с текстом на странице, кроме input
-    var textElements = document.querySelectorAll('body :not(input, textarea, label)');
+    var textElements = document.querySelectorAll('body :not(input, textarea, label, .dynamic__button)');
     var header = document.querySelector('header');
     var body = document.querySelector('body');
     var footer = document.querySelector('footer');
-    var a = document.querySelector('a');
-    var h1 = document.querySelector('h1');
+    var themeSwitcher = document.getElementById('theme-switcher'); // Получаем элемент переключения темы
 
-    // Устанавливаем цвета в зависимости от выбранной темы
     if (isWhite) {
         textElements.forEach(function(element) {
             element.style.color = '#000';
@@ -18,8 +14,7 @@ function setTheme(isWhite) {
         header.style.backgroundColor  = '#fff';
         body.style.backgroundColor  = '#fff';
         footer.style.backgroundColor  = '#fff';
-        a.style.color = '#000';
-        h1.style.color = '#000';
+        themeSwitcher.src = 'image/moon.svg';
     } else {
         textElements.forEach(function(element) {
             element.style.color = '#fff';
@@ -27,22 +22,15 @@ function setTheme(isWhite) {
         header.style.backgroundColor  = '#333';
         body.style.backgroundColor  = '#222';
         footer.style.backgroundColor  = '#333';
-        a.style.color = '#fff';
-        h1.style.color = '#fff';
+        themeSwitcher.src = 'image/sun.svg';
     }
 }
 
 
-// Устанавливаем тему при загрузке страницы
 setTheme(isWhiteText);
 
-// Функция для переключения темы
 function toggleTheme() {
-    // Инвертируем текущее состояние
     isWhiteText = !isWhiteText;
-    // Сохраняем состояние темы в Local Storage
     localStorage.setItem('isWhiteText', isWhiteText);
-
-    // Устанавливаем новую тему
     setTheme(isWhiteText);
 }

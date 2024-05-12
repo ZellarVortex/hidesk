@@ -5,8 +5,7 @@
             <a href="" class="">Курсы</a>
             <a th:href="@{/myCourse}">Мои курсы</a>
             <a th:href="@{/addCourse}" class="dynamic__button">Создать курс</a>
-            <!-- Добавленная кнопка для смены темы -->
-            <button id="theme-switcher" onclick="toggleTheme()">Сменить тему</button>
+            <img th:src="@{image/moon.svg}" id="theme-switcher" class="theme-switcher" onclick="toggleTheme()" alt="текст"/>
         </div>
     </nav>
 </header>
