@@ -13,8 +13,8 @@ function setTheme(isWhite) {
         });
         header.style.backgroundColor  = '#fff';
         body.style.backgroundColor  = '#fff';
-        footer.style.backgroundColor  = '#fff';
-        themeSwitcher.src = 'image/moon.svg';
+        footer.style.backgroundColor  = '#f0f0f0';
+        themeSwitcher.src = '/image/moon.svg';
     } else {
         textElements.forEach(function(element) {
             element.style.color = '#fff';
@@ -22,7 +22,7 @@ function setTheme(isWhite) {
         header.style.backgroundColor  = '#333';
         body.style.backgroundColor  = '#222';
         footer.style.backgroundColor  = '#333';
-        themeSwitcher.src = 'image/sun.svg';
+        themeSwitcher.src = '/image/sun.svg';
     }
 }
 

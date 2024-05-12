@@ -6,10 +6,13 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
     <title>Главная</title>
 </head>
 <body>
 <th:block th:insert="~{fragments/header :: header}"></th:block>
+
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
 </body>
 </html>
 
