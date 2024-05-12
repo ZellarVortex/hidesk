@@ -1,0 +1,12 @@
+<header th:fragments="header">
+    <nav class="container">
+        <div><a th:href="@{/main}"><img src="/image/Logo.svg" alt="Логотип"></a></div>
+        <div class="nav-header">
+            <a href="" class="">Курсы</a>
+            <a th:href="@{/myCourse}">Мои курсы</a>
+            <a th:href="@{/addCourse}" class="dynamic__button">Создать курс</a>
+            <!-- Добавленная кнопка для смены темы -->
+            <button id="theme-switcher" onclick="toggleTheme()">Сменить тему</button>
+        </div>
+    </nav>
+</header>

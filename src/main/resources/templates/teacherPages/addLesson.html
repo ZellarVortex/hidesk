@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
+    <title>Добавление уроков</title>
+</head>
+<body>
+    <th:block th:insert="~{fragments/header :: header}"></th:block>
+    <div class="page__name">
+        <div class="container">
+            <span th:text="${course.getName()}"></span>
+        </div>
+    </div>
+    <main class="container">
+        <form class="lesson__page" method="post" th:action="@{/addLesson}">
+            <input type="hidden" name="courseId" th:value="${course.getId()}">
+        <div class="lesson__info">
+            <img th:src="@{'/storage/images/' + ${course.getImageName()}}">
+            <div class="lesson__info__menu">
+            <input type="submit" class="lesson__info__save button__hover" value="Сохранить">
+            <a th:href="@{/addCourse(courseId=${course.getId()})}" class="a__hover">Описание</a>
+            <a href="" class="a__hover">Содержание</a>
+            <a href="" class="a__hover">Комментарии</a>
+            <a href="" class="a__hover">Поиск по курсу</a>
+            </div>
+        </div>
+        <div class="lesson__list">
+            <span>Программа Курса</span>
+            <div class="alllessons__list">
+                <input type="hidden" name="lessonName">
+                <div class="lesson" th:if="${lesson_list.size()} > 0" th:each="lesson : ${lesson_list}">
+                    <img src="/image/baseImage.svg" alt="">
+                    <div class="input-container">
+                        <input type="hidden" name="lesson_id" th:value="${lesson.getId()}">
+                        <input type="text" th:value="${lesson.getName()}" name="lessonName" class="custom-input" placeholder="Введите название урока" minlength="10" maxlength="50">
+                    </div>
+                    <a th:href="@{/addExercise(lessonId=${lesson.getId()})}" class="link-icon">></a>
+                </div>
+
+                <div class="lesson" th:if="${lesson_list.size()} == 0">
+                    <img src="/image/baseImage.svg" alt="">
+                    <div class="input-container">
+                        <input type="text" name="lessonName" class="custom-input" placeholder="Введите название урока" minlength="10" maxlength="50">
+                    </div>
+                </div>
+
+                <div class="lesson sample" style="display: none;">
+                    <img src="/image/baseImage.svg" alt="">
+                    <div class="input-container">
+                        <input type="text" class="custom-input" placeholder="Введите название урока"  minlength="10" maxlength="50">
+                    </div>
+                </div>
+            </div>
+            <div class="add__lesson__block">Добавить новый урок</div>
+        </div>
+        </form>
+    </main>
+    <th:block th:insert="~{fragments/footer :: footer}"></th:block>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var addLessonButton = document.querySelector('.add__lesson__block');
+            var lessonList = document.querySelector('.alllessons__list');
+            var lessonTemplate = document.querySelector('.sample');
+
+            addLessonButton.addEventListener('click', function() {
+                var newLessonBlock = lessonTemplate.cloneNode(true);
+                var inputElement = newLessonBlock.querySelector('.custom-input');
+                inputElement.setAttribute('name', 'lessonName');
+                lessonList.appendChild(newLessonBlock);
+                newLessonBlock.style.display = "flex";
+            });
+        });
+    </script>
+
+    <script>
+        var imageName = "[[${course.getImageName()}]]";
+
+        var imageUrl = '/images/' + imageName;
+
+        var imageElement = document.getElementById('lesson_image');
+
+        imageElement.src = imageUrl;
+    </script>
+</body>
+</html>
+
+<script th:src="@{'JS/themeJs.js'}"></script>

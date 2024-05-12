@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
+    <title>Добавление курса</title>
+</head>
+<body>
+<th:block th:insert="~{fragments/header :: header}"></th:block>
+<form th:action="@{/addCourse}" method="post" enctype="multipart/form-data" onsubmit="return validateForm()">
+    <input type="hidden" name="id" th:if="${courseInfo}" th:value="${courseInfo.getId()}">
+    <section class="section__top">
+        <div class="container section__info">
+            <div class="course__info">
+                <label th:if="${courseInfo}"><input type="text" name="name" th:value="${courseInfo.getName()}" placeholder="Введите название" required></label>
+                <label th:unless="${courseInfo}"><input type="text" name="name" placeholder="Введите название" required></label>
+                <label th:if="${courseInfo}"><textarea name="description" th:if="${courseInfo}" placeholder="Введите описание" required>[[${courseInfo.getDescription()}]]</textarea></label>
+                <label th:unless="${courseInfo}"><textarea name="description" placeholder="Введите описание" required></textarea></label>
+            </div>
+            <div class="file__input">
+                <label for="file__upload" class="file__upload__label">Добавить изображение</label>
+                <input type="file" id="file__upload" name="image" accept="image/*" onchange="checkFileSize(this)">
+            </div>
+        </div>
+    </section>
+    <section class="section__bottom container">
+        <article>
+            <div class="about__course">
+                <h1>Чему вы научитесь</h1>
+                <textarea name="whatIsTaught" th:if="${courseInfo}" placeholder="Введите чему научится пользователь, когда будет проходить ваш курс" required>[[${courseInfo.getWhatIsTaught()}]]</textarea>
+                <textarea name="whatIsTaught" th:unless="${courseInfo}" placeholder="Введите чему научится пользователь, когда будет проходить ваш курс" required></textarea>
+            </div>
+            <div class="about__course">
+                <h1>О курсе</h1>
+                <textarea name="about" th:if="${courseInfo}" placeholder="Введите инфомацию о вашем курсе" required>[[${courseInfo.getAbout()}]]</textarea>
+                <textarea name="about" th:unless="${courseInfo}" placeholder="Введите инфомацию о вашем курсе" required></textarea>
+            </div>
+            <div class="about__course">
+                <h1>Для кого данный курс</h1>
+                <textarea name="forWho" th:if="${courseInfo}" placeholder="Введите для кого создан данный курс" required>[[${courseInfo.getForWho()}]]</textarea>
+                <textarea name="forWho" th:unless="${courseInfo}" placeholder="Введите для кого создан данный курс" required></textarea>
+            </div>
+            <div class="about__course">
+                <h1>Что нужно знать, чтобы поступить на курс</h1>
+                <textarea name="requirements" th:if="${courseInfo}" placeholder="Введите требования для поступления" required>[[${courseInfo.getRequirements()}]]</textarea>
+                <textarea name="requirements" th:unless="${courseInfo}" placeholder="Введите требования для поступления" required></textarea>
+            </div>
+        </article>
+        <aside>
+            <div>
+                <input type="submit" value="Создать курс" class="submit__button">
+            </div>
+        </aside>
+    </section>
+</form>
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
+<script>
+    document.getElementById('file__upload').addEventListener('change', function() {
+        var label = document.querySelector('.file__upload__label');
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                label.style.backgroundImage = 'url(' + e.target.result + ')';
+            }
+            reader.readAsDataURL(this.files[0]);
+        } else {
+            label.style.backgroundImage = 'none';
+        }
+    });
+
+    function checkFileSize(input) {
+        const maxSizeInBytes = 1048576; // 1 MB (примерно)
+
+        if (input.files && input.files[0]) {
+            const fileSize = input.files[0].size;
+            if (fileSize > maxSizeInBytes) {
+                alert("Файл слишком большой. Пожалуйста, выберите файл размером менее 1 MB.");
+                input.value = ''; // Очистить поле ввода
+            }
+        }
+    }
+</script>
+</body>
+</html>
+
+<script th:src="@{'JS/themeJs.js'}"></script>

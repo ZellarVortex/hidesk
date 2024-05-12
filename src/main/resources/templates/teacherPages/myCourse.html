@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Ваши курсы</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<th:block th:insert="~{fragments/header :: header}"></th:block>
+
+<main class="container">
+    <h1>Ваши курсы</h1>
+    <div class="course__flex">
+    <div th:each="course : ${courses}" class="course__flex__block">
+        <div>
+        <img th:src="@{'/storage/images/' + ${course.getImageName()}}" alt="">
+        </div>
+        <div class="course__flex__info">
+        <a th:href="@{/addLesson(courseId=${course.getId()})}" class="course__flex__name a__hover"><span th:text="${course.getName()}"></span></a>
+        <a href="" class="course__flex__author a__hover"><span th:text="${course.getAuthor().getSurname()} + ' ' + ${course.getAuthor().getName()}"></span></a>
+        <span th:text="${course.getDescription()}" class="course__flex__description"></span>
+        </div>
+    </div>
+    </div>
+</main>
+
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>
+
+<script th:src="@{'JS/themeJs.js'}"></script>

@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
+    <title>Добавление уроков</title>
+</head>
+<body>
+<th:block th:insert="~{fragments/header :: header}"></th:block>
+<div class="page__name">
+    <div class="container header__info__name">
+        <span th:text="${lesson.getName()}"></span>
+        <a th:href="@{/addLesson(courseId = ${lesson.getCourse().getId()})}">Вернуться к урокам</a>
+    </div>
+</div>
+<main class="container">
+    <form th:action="@{/addExercise}" enctype="multipart/form-data" method="post" >
+        <div class="exercise__content">
+            <input type="hidden" name="lessonId" th:value="${lesson.getId()}">
+            <input type="hidden" th:if="${exercise}" name="exerciseId" th:value="${exercise.getId()}">
+            <label class="input__exercise__name">
+                <input th:if="${exercise}" th:value="${exercise.getName()}" type="text" name="name" placeholder="Введите название">
+                <input th:unless="${exercise}" type="text" name="name" placeholder="Введите название">
+            </label>
+            <label class="exercise__file__upload__label" for="file__upload">Добавить изображение</label>
+            <input type="file" name="imageName" id="file__upload" accept="image/*" onchange="checkFileSize(this)">
+            <label class="textarea__exercise__content">
+                <textarea th:if="${exercise}" name="mainContent" cols="30" rows="10" placeholder="Введите информацию о задании">[[${exercise.getMainContent()}]]</textarea>
+                <textarea th:unless="${exercise}" name="mainContent" cols="30" rows="10" placeholder="Введите информацию о задании"></textarea>
+            </label>
+            <div class="exercise__bottom__menu">
+                <input type="submit" class="button__hover lesson__info__save" value="Сохранить">
+            </div>
+        </div>
+    </form>
+</main>
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
+
+<script>
+    document.getElementById('file__upload').addEventListener('change', function() {
+        var label = document.querySelector('.exercise__file__upload__label');
+        if (this.files && this.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                label.style.backgroundImage = 'url(' + e.target.result + ')';
+            }
+            reader.readAsDataURL(this.files[0]);
+        } else {
+            label.style.backgroundImage = 'none';
+        }
+    });
+
+    function checkFileSize(input) {
+        const maxSizeInBytes = 1048576; // 1 MB (примерно)
+
+        if (input.files && input.files[0]) {
+            const fileSize = input.files[0].size;
+            if (fileSize > maxSizeInBytes) {
+                alert("Файл слишком большой. Пожалуйста, выберите файл размером менее 1 MB.");
+                input.value = ''; // Очистить поле ввода
+            }
+        }
+    }
+</script>
+
+</body>
+</html>
+
+<script th:src="@{'JS/themeJs.js'}"></script>
