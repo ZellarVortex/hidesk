@@ -4,7 +4,6 @@ import com.diploma.hidesk.Model.DTO.UserDto;
 import com.diploma.hidesk.Service.AuthService.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -13,13 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 public class Authorization {
     private final UserService userService;
-
-    @GetMapping("/signup")
-    public String signup(){
-        return "account/signup";
-    }
-
-    @PostMapping("/signup")
+    @PostMapping("signup")
     public String userRegister(UserDto dto){
         userService.registerUser(dto);
         return "redirect:/main";
