@@ -40,7 +40,48 @@ html, body{
 }
 .header__info__name{
     display: flex;
-    justify-content: space-between;
+}
+
+/* Форма авторизации и регистрации */
+.auth{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.auth__forms{
+    background-color: #ececec;
+    padding: 30px 50px;
+    border-radius: 10px;
+    display: flex;
+    text-align: center;
+    align-items: center;
+}
+.auth__forms form{
+    display: flex;
+    flex-direction: column;
+    margin: 0 30px;
+}
+.auth__forms form input{
+    padding: 5px;
+    margin: 5px 0;
+    width: 300px;
+    border-radius: 5px;
+}
+.auth__forms form input[type = "submit"]{
+    padding: 10px 5px;
+    margin: 10px 0;
+    width: 300px;
+    border: none;
+    color: white;
+    background-color: #FF7F50;
+    border-radius: 5px;
+}
+.auth__forms form select{
+    padding: 5px;
+    margin: 5px 0;
+    width: 300px;
+    border-radius: 5px;
 }
 /* Шапка */
 

@@ -2,67 +2,97 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
     <title>Авторизация</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        h2 {
-            text-align: center;
-            color: #333;
-        }
-        form {
-            max-width: 300px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        label {
-            font-weight: bold;
-        }
-        input[type="email"],
-        input[type="password"],
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            box-sizing: border-box;
-        }
-        input[type="submit"] {
-            background-color: #4caf50;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
-    </style>
 </head>
 <body>
 
-<h2>Login</h2>
+<main class="auth">
+    <div class="auth__forms">
+        <form th:action="@{/login}" method="post" class="form__login">
+            <h1>Вход</h1>
+            <div>
+                <label for="username"></label>
+                <input type="email" id="username" name="username" placeholder="Введите ваш email" required>
+            </div>
+            <div>
+                <label for="passwordLogin"></label>
+                <input type="password" id="passwordLogin" name="password" placeholder="Введите ваш пароль" required>
+            </div>
+            <div>
+                <input type="submit" value="Авторизоваться">
+            </div>
+            <a onclick="showSignupForm()">Зарегистрироваться</a>
+        </form>
 
-<form th:action="@{/login}" method="post">
-    <div>
-        <label for="username">Email:</label><br>
-        <input type="email" id="username" name="username" required><br>
+        <form th:action="@{/hidesk/signup}" method="post" class="form__signup" style="display: none">
+            <h1>Регистрация</h1>
+            <div class="form-group">
+                <label for="email"></label>
+                <input type="email" id="email" name="email" placeholder="Введите ваш email" required>
+            </div>
+            <div class="form-group">
+                <label for="passwordSignUp"></label>
+                <input type="password" id="passwordSignUp" name="password" placeholder="Введите ваш пароль" required>
+            </div>
+            <div class="form-group">
+                <label for="name"></label>
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя">
+            </div>
+            <div class="form-group">
+                <label for="surname"></label>
+                <input type="text" id="surname" name="surname" placeholder="Введите вашу фамилию">
+            </div>
+            <div class="form-group">
+                <label for="lastname"></label>
+                <input type="text" id="lastname" name="lastname" placeholder="Введите ваше отчество">
+            </div>
+            <div class="form-group">
+                <label for="age"></label>
+                <input type="number" id="age" name="age" placeholder="Введите ваш возраст">
+            </div>
+            <div class="form-group">
+                <label for="number"></label>
+                <input type="tel" id="number" name="number" placeholder="Введите ваш номер телефона">
+            </div>
+            <div class="form-group">
+                <label for="role"></label>
+                <select id="role" name="role">
+                    <option value="Учитель">Учитель</option>
+                    <option value="Студент">Студент</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Зарегистрироваться">
+            </div>
+            <a onclick="showLoginForm()">Авторизироваться</a>
+        </form>
     </div>
-    <div>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br>
-    </div>
-    <div>
-        <input type="submit" value="Submit">
-    </div>
-</form>
+</main>
+
+<script>
+    function showSignupForm() {
+        var loginForm = document.querySelector('.form__login');
+        var signupForm = document.querySelector('.form__signup');
+
+        loginForm.style.display = 'none';
+        signupForm.style.display = 'block';
+    }
+
+    function showLoginForm() {
+        var loginForm = document.querySelector('.form__login');
+        var signupForm = document.querySelector('.form__signup');
+
+        signupForm.style.display = 'none';
+        loginForm.style.display = 'block';
+    }
+
+</script>
+
 
 </body>
 </html>
