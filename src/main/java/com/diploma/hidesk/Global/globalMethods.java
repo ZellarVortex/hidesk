@@ -9,6 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -44,4 +45,17 @@ public class globalMethods {
 
         return uniqueFileName;
     }
+
+
+    public static void deletePhoto(String fileName) throws IOException {
+        Path filePath = Paths.get(rootPath.toString() + "\\images", fileName);
+        System.out.println(filePath);
+        if (Files.exists(filePath)) {
+            Files.delete(filePath);
+            System.out.println("Файл успешно удален: " + fileName);
+        } else {
+            System.out.println("Файл не найден: " + fileName);
+        }
+    }
+
 }

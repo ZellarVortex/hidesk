@@ -26,7 +26,7 @@
             <a th:href="@{/addCourse(courseId=${course.getId()})}" class="a__hover">Описание</a>
             <a href="" class="a__hover">Содержание</a>
             <a href="" class="a__hover">Комментарии</a>
-            <a href="" class="a__hover">Поиск по курсу</a>
+            <a th:href="@{/deleteCourse(courseId=${course.getId()})}" class="a__hover" onclick="return confirmDelete()">Удалить курс</a>
             </div>
         </div>
         <div class="lesson__list">
@@ -86,6 +86,20 @@
         var imageElement = document.getElementById('lesson_image');
 
         imageElement.src = imageUrl;
+    </script>
+
+    <script>
+        function confirmDelete() {
+            var result = confirm("Вы уверены, что хотите удалить курс?");
+
+            if (result) {
+                return true;
+            } else {
+                event.preventDefault();
+                return false;
+            }
+        }
+
     </script>
 </body>
 </html>

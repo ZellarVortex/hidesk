@@ -3,7 +3,6 @@ package com.diploma.hidesk.Controller;
 import com.diploma.hidesk.Model.CourseModel.Course;
 import com.diploma.hidesk.Model.CourseModel.Exercise;
 import com.diploma.hidesk.Model.CourseModel.Lesson;
-import com.diploma.hidesk.Model.CourseModel.Test;
 import com.diploma.hidesk.Model.DTO.CourseDto;
 import com.diploma.hidesk.Model.DTO.ExerciseDto;
 import com.diploma.hidesk.Model.DTO.LessonDto;
@@ -51,6 +50,11 @@ public class TeacherController {
         return "redirect:/addLesson?courseId=" + id;
     }
 
+    @GetMapping("deleteCourse")
+    public String deleteCourse(@RequestParam(value = "courseId", required = false) Long courseId, @AuthenticationPrincipal User user) throws IOException {
+        courseService.deleteCourse(courseId, user);
+        return "redirect:/main";
+    }
     @GetMapping("addLesson")
     public String addLessonPage(@RequestParam(value = "courseId", required = false) Long courseId, Model model) throws InterruptedException {
         Course courseData = courseService.findCourseById(courseId).get();
@@ -82,10 +86,5 @@ public class TeacherController {
                 .getLessonById(dto.getLessonId())
                 .getCourse()
                 .getId();
-    }
-
-    @PostMapping("addTest")
-    public void addTest(Test test){
-
     }
 }

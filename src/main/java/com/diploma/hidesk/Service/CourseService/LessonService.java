@@ -4,6 +4,7 @@ import com.diploma.hidesk.Model.CourseModel.Course;
 import com.diploma.hidesk.Model.CourseModel.Lesson;
 import com.diploma.hidesk.Model.DTO.LessonDto;
 import com.diploma.hidesk.Repo.CourseRepo.CourseRepo;
+import com.diploma.hidesk.Repo.CourseRepo.ExerciseRepo;
 import com.diploma.hidesk.Repo.CourseRepo.LessonRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -17,11 +18,14 @@ public class LessonService {
 
     private final LessonRepo lessonRepo;
     private final CourseRepo courseRepo;
+    private final ExerciseRepo exerciseRepo;
     public void addLesson(LessonDto dto) {
         Course course = courseRepo.findById(dto.getCourseId()).orElseThrow(() -> new IllegalArgumentException("Курс с ID " + dto.getCourseId() + " не найден"));
 
         List<String> lessonNames = dto.getLessonName();
         List<Long> lessonIds = dto.getLesson_id();
+
+        lessonNames.removeFirst();
 
         if (lessonIds == null) {
             lessonIds = new ArrayList<>();
@@ -43,6 +47,7 @@ public class LessonService {
                 lesson.setName(lessonName);
                 lessonRepo.save(lesson);
             } else if (lessonId != null) {
+                exerciseRepo.deleteById(exerciseRepo.findExerciseByLesson_Id(lessonId).getId());
                 lessonRepo.deleteById(lessonId);
             }
         }
