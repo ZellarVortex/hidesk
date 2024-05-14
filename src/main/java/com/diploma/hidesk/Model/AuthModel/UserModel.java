@@ -28,6 +28,6 @@ public class UserModel {
 
     @CollectionTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"))
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
-    @Enumerated(value = EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     private Set<Role> role;
 }

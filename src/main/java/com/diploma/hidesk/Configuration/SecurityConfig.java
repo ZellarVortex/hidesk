@@ -1,5 +1,6 @@
 package com.diploma.hidesk.Configuration;
 
+import com.diploma.hidesk.Service.AuthService.CustomAccessDeniedHandler;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +10,7 @@ import org.springframework.security.config.annotation.web.configurers.LogoutConf
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 
 
 @Configuration
@@ -24,10 +26,13 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests((request) -> request
+                        .requestMatchers("/addCourse", "/addLesson", "/addExercise", "/deleteCourse", "/myCourse").hasRole("TEACHER")
                         .requestMatchers("/signup", "/static/*", "/image/*", "/login", "/css/style.css").permitAll()
-                        .anyRequest()
-                        .authenticated()
+                        .anyRequest().authenticated()
                 )
+                .exceptionHandling(exception ->
+                        exception
+                                .accessDeniedHandler(accessDeniedHandler()))
                 .formLogin((form) -> form
                         .loginPage("/login")
                         .defaultSuccessUrl("/main")
@@ -37,4 +42,8 @@ public class SecurityConfig {
         return http.build();
     }
 
+    @Bean
+    public AccessDeniedHandler accessDeniedHandler(){
+        return new CustomAccessDeniedHandler();
+    }
 }
