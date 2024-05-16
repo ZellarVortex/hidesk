@@ -7,6 +7,8 @@ function setTheme(isWhite) {
     var footer = document.querySelector('footer');
     var themeSwitcher = document.getElementById('theme-switcher'); // Получаем элемент переключения темы
 
+    var profile = document.getElementById("profile");
+
     if (isWhite) {
         textElements.forEach(function(element) {
             element.style.color = '#000';
@@ -15,6 +17,7 @@ function setTheme(isWhite) {
         body.style.backgroundColor  = '#fff';
         footer.style.backgroundColor  = '#f0f0f0';
         themeSwitcher.src = '/image/moon.svg';
+        profile.src = '/image/profileBlack.svg';
     } else {
         textElements.forEach(function(element) {
             element.style.color = '#fff';
@@ -23,6 +26,7 @@ function setTheme(isWhite) {
         body.style.backgroundColor  = '#222';
         footer.style.backgroundColor  = '#333';
         themeSwitcher.src = '/image/sun.svg';
+        profile.src = '/image/profileWhite.svg';
     }
 }
 

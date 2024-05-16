@@ -1,8 +1,8 @@
 package com.diploma.hidesk.Service.AuthService;
 
 import com.diploma.hidesk.Model.AuthModel.Role;
-import com.diploma.hidesk.Model.DTO.UserDto;
 import com.diploma.hidesk.Model.AuthModel.UserModel;
+import com.diploma.hidesk.Model.DTO.UserDto;
 import com.diploma.hidesk.Repo.AuthRepo.UserRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -31,5 +31,8 @@ public class UserService {
                 user.setRole(Collections.singleton(Role.STUDENT));
             }
             repo.save(user);
+    }
+    public UserModel getUserByName(String name){
+        return repo.findByEmail(name);
     }
 }

@@ -100,10 +100,10 @@ nav{
     align-items: center;
 }
 .nav-header *{
-    margin: 0 5px;
+    margin: 0 10px;
 }
 .dynamic__button{
-    margin-left: 20px;
+    margin-left: 10px;
     margin-right: 0;
     color: white;
     background-color: #FF7F50;
