@@ -30,4 +30,12 @@ public class UserModel {
     @ElementCollection(targetClass = Role.class, fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     private Set<Role> role;
+
+    public String getFio() {
+        return String.format("%s %s. %s.",
+                surname,
+                name != null && !name.isEmpty() ? name.charAt(0) : "",
+                lastname != null && !lastname.isEmpty() ? lastname.charAt(0) : ""
+        );
+    }
 }

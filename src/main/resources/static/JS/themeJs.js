@@ -1,7 +1,7 @@
 var isWhiteText = localStorage.getItem('isWhiteText') === 'true';
 
 function setTheme(isWhite) {
-    var textElements = document.querySelectorAll('body :not(input, textarea, label, .dynamic__button)');
+    var textElements = document.querySelectorAll('body :not(input, textarea, label, .dynamic__button, .profile__info__block)');
     var header = document.querySelector('header');
     var body = document.querySelector('body');
     var footer = document.querySelector('footer');

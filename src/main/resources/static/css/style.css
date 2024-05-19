@@ -40,6 +40,7 @@ html, body{
 }
 .header__info__name{
     display: flex;
+    justify-content: space-between;
 }
 
 /* Форма авторизации и регистрации */
@@ -405,4 +406,21 @@ footer .footer-bottom {
     color: #313131;
     overflow-wrap: anywhere; /* Для современных браузеров */
     word-wrap: anywhere;
+}
+/* Профиль */
+
+.profile__info__block{
+    background-color: #7C7C7C;
+    color: white;
+    border: black 1px solid;
+    border-radius: 5px;
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    margin: 15px 10px;
+}
+.profile__main__block{
+    display: flex;
+    flex-wrap: wrap;
+    margin: 100px 0 150px;
 }

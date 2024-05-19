@@ -11,9 +11,26 @@
 </head>
 <body>
 <th:block th:insert="~{fragments/header :: header}"></th:block>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Выйти">
-</form>
+<div class="page__name">
+    <div class="container header__info__name">
+        <span th:text="${userInfo.getFio()}"></span>
+        <form th:action="@{logout}" method="post">
+            <input type="submit" value="Выйти" style="all:unset" class="">
+        </form>
+    </div>
+</div>
+
+<main class="container">
+    <div class="profile__main__block">
+            <div class="profile__info__block" style="flex-grow: 3;" th:text="${'Имя: ' +userInfo.getName()}"></div>
+            <div class="profile__info__block" style="flex-grow: 3;" th:text="${'Фамилия: ' +userInfo.getSurname()}"></div>
+            <div class="profile__info__block" style="flex-grow: 3;" th:text="${'Электронная почта: ' + userInfo.getEmail()}"></div>
+            <div class="profile__info__block" style="flex-grow: 3; flex-basis: 400px" th:text="${'Возраст: ' +userInfo.getAge()}"></div>
+            <div class="profile__info__block" style="flex-grow: 3; flex-basis: 400px" th:text="${'Номер телефона: ' +userInfo.getNumber()}"></div>
+            <div class="profile__info__block" style="flex-grow: 3; flex-basis: 400px" th:text="${'Роль: ' +userInfo.getRole()}"></div>
+            <div class="profile__info__block" style="flex-grow: 3; flex-basis: 400px"> Будет</div>
+    </div>
+</main>
 
 <th:block th:insert="~{fragments/footer :: footer}"></th:block>
 </body>
