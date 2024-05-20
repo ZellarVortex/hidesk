@@ -53,7 +53,7 @@ public class TeacherController {
     @GetMapping("deleteCourse")
     public String deleteCourse(@RequestParam(value = "courseId", required = false) Long courseId, @AuthenticationPrincipal User user) throws IOException {
         courseService.deleteCourse(courseId, user);
-        return "redirect:/main";
+        return "redirect:/";
     }
     @GetMapping("addLesson")
     public String addLessonPage(@RequestParam(value = "courseId", required = false) Long courseId, Model model) throws InterruptedException {

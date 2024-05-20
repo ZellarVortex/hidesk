@@ -15,7 +15,7 @@ public class Authorization {
     @PostMapping("signup")
     public String userRegister(UserDto dto){
         userService.registerUser(dto);
-        return "redirect:/main";
+        return "redirect:/";
     }
 
 }
