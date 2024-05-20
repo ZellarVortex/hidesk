@@ -36,7 +36,7 @@ public class SecurityConfig {
                                 .accessDeniedHandler(accessDeniedHandler()))
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/allCourse")
+                        .defaultSuccessUrl("/")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);

@@ -29,13 +29,14 @@ public class Main {
     private final SubscribeService subscribeService;
     private final LessonService lessonService;
     private final ExerciseService exerciseService;
+
     @GetMapping("profile")
     public String userProfile(@AuthenticationPrincipal User user, Model model){
         UserModel userModel = userService.getUserByName(user.getUsername());
         model.addAttribute("userInfo", userModel);
         return "account/profile";
     }
-    @GetMapping("allCourse")
+    @GetMapping("")
     public String getAllCoursePage(@RequestParam(value = "courseName", required = false) String courseName, Model model) {
         if (courseName != null && !courseName.isEmpty()) {
             List<Course> courses = courseService.findAllByName(courseName);

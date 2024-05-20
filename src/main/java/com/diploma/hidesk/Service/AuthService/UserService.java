@@ -27,7 +27,7 @@ public class UserService {
             user.setNumber(dto.getNumber());
             user.setPassword(passwordEncoder().encode(dto.getPassword()));
             if (dto.getRole().equals("Teacher")) {
-                user.setRole(Collections.singleton(Role.ADMIN));
+                user.setRole(Collections.singleton(Role.TEACHER));
             } else if (dto.getRole().equals("Student")) {
                 user.setRole(Collections.singleton(Role.STUDENT));
             }
