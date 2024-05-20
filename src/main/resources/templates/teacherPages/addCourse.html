@@ -16,14 +16,22 @@
     <section class="section__top">
         <div class="container section__info">
             <div class="course__info">
-                <label th:if="${courseInfo}"><input type="text" name="name" th:value="${courseInfo.getName()}" placeholder="Введите название" required></label>
-                <label th:unless="${courseInfo}"><input type="text" name="name" placeholder="Введите название" required></label>
-                <label th:if="${courseInfo}"><textarea name="description" th:if="${courseInfo}" placeholder="Введите описание" required>[[${courseInfo.getDescription()}]]</textarea></label>
-                <label th:unless="${courseInfo}"><textarea name="description" placeholder="Введите описание" required></textarea></label>
+                <label th:if="${courseInfo}">
+                    <input type="text" name="name" th:value="${courseInfo.getName()}" placeholder="Введите название" required>
+                </label>
+                <label th:unless="${courseInfo}">
+                    <input type="text" name="name" placeholder="Введите название" required>
+                </label>
+                <label th:if="${courseInfo}">
+                    <textarea name="description" th:if="${courseInfo}" placeholder="Введите описание" required>[[${courseInfo.getDescription()}]]</textarea>
+                </label>
+                <label th:unless="${courseInfo}">
+                    <textarea name="description" placeholder="Введите описание" required></textarea>
+                </label>
             </div>
             <div class="file__input">
                 <label for="file__upload" class="file__upload__label">Добавить изображение</label>
-                <input type="file" id="file__upload" name="image" accept="image/*" onchange="checkFileSize(this)">
+                <input type="file" id="file__upload" name="image" accept="image/*" onchange="checkFileSize(this)" required>
             </div>
         </div>
     </section>
@@ -56,6 +64,7 @@
             </div>
         </aside>
     </section>
+
 </form>
 <th:block th:insert="~{fragments/footer :: footer}"></th:block>
 <script>

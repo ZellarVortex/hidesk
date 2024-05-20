@@ -7,10 +7,82 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
-    <title>Курс</title>
+    <title th:text="${courseInfo.getName()}"> </title>
+    <style>
+        .course__info div{
+            background-color: rgba(157, 157, 157, 0.71);
+            color: white;
+            border: black 1px solid;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 18px;
+            margin: 15px 10px;
+        }
+        .about__course{
+            background-color: rgba(157, 157, 157, 0.71);
+            color: white;
+            border: black 1px solid;
+            border-radius: 5px;
+            padding: 15px;
+            font-size: 18px;
+            margin: 15px;
+            margin-right: 50px;
+            max-width: 940px;
+            word-wrap: break-word;
+        }
+        .file__input img{
+            border-radius: 10px;
+            width: 300px;
+        }
+    </style>
 </head>
 <body>
-<header th:include="fragments/header :: header"></header>
+<th:block th:insert="~{fragments/header :: header}"></th:block>
+    <section class="section__top">
+        <div class="container section__info">
+            <div class="course__info">
+                <div th:text="${courseInfo.getName()}"></div>
+                <div th:text="${courseInfo.getDescription()}"></div>
+            </div>
+            <div class="file__input">
+                <img th:src="'/storage/images/' + ${courseInfo.getImageName()}" alt="">
+            </div>
+        </div>
+    </section>
+    <section class="section__bottom container">
+        <article>
+            <div class="about__course">
+                <h1>Чему вы научитесь</h1>
+                <span th:text="${courseInfo.getWhatIsTaught()}"></span>
+            </div>
+            <div class="about__course">
+                <h1>О курсе</h1>
+                <span th:text="${courseInfo.getAbout()}"></span>
+            </div>
+            <div class="about__course">
+                <h1>Для кого данный курс</h1>
+                <span th:text="${courseInfo.getForWho()}"></span>
+            </div>
+            <div class="about__course">
+                <h1>Что нужно знать, чтобы поступить на курс</h1>
+                <span th:text="${courseInfo.getRequirements()}"></span>
+            </div>
+        </article>
+        <aside>
+            <div>
+                <form th:action="@{/subscribe}" method="get" th:if="!${subscribe}">
+                    <input type="hidden" name="courseId" th:value="${courseInfo.getId()}">
+                    <input type="submit" value="Подписаться" class="submit__button">
+                </form>
+
+                <form th:action="@{/lessonPage}" method="get" th:if="${subscribe}">
+                    <input type="hidden" name="courseId" th:value="${courseInfo.getId()}">
+                    <input type="submit" value="Начать" class="submit__button">
+                </form>
+            </div>
+        </aside>
+    </section>
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
 </body>
 </html>
 

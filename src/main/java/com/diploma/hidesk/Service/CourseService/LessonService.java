@@ -75,4 +75,7 @@ public class LessonService {
     public Lesson getLessonById(Long id){
         return lessonRepo.findById(id).get();
     }
+    public List<Lesson> getAll(){
+        return lessonRepo.findAll();
+    }
 }

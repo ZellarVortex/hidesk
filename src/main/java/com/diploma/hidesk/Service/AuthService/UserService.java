@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;
+import java.util.List;
 
 import static com.diploma.hidesk.Configuration.SecurityConfig.passwordEncoder;
 
@@ -26,7 +27,7 @@ public class UserService {
             user.setNumber(dto.getNumber());
             user.setPassword(passwordEncoder().encode(dto.getPassword()));
             if (dto.getRole().equals("Teacher")) {
-                user.setRole(Collections.singleton(Role.TEACHER));
+                user.setRole(Collections.singleton(Role.ADMIN));
             } else if (dto.getRole().equals("Student")) {
                 user.setRole(Collections.singleton(Role.STUDENT));
             }
@@ -34,5 +35,8 @@ public class UserService {
     }
     public UserModel getUserByName(String name){
         return repo.findByEmail(name);
+    }
+    public List<UserModel> getAllUser(){
+        return repo.findAll();
     }
 }

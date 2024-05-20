@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface CourseRepo extends JpaRepository<Course, Long> {
     List<Course> findAllByAuthorEmail(String email);
+    List<Course> findByNameContainingIgnoreCase(String keyword);
+
 }

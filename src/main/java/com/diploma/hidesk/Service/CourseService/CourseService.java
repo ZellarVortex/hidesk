@@ -81,5 +81,11 @@ public class CourseService {
     public List<Course> findAllByAuthorEmail(String email){
         return courseRepo.findAllByAuthorEmail(email);
     }
+    public List<Course> findAll(){
+        return courseRepo.findAll();
+    }
+    public List<Course> findAllByName(String keyword){
+        return courseRepo.findByNameContainingIgnoreCase(keyword);
+    }
 
 }

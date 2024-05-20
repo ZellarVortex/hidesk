@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
+    <title th:text="${exercise.getName()}"></title>
+</head>
+<body>
+<th:block th:insert="~{fragments/header :: header}"></th:block>
+<div class="page__name">
+    <div class="container header__info__name">
+        <span th:text="${lesson.getName()}"></span>
+        <a th:href="@{/lessonPage(courseId = ${lesson.getCourse().getId()})}">Вернуться к урокам</a>
+    </div>
+</div>
+
+<main class="container">
+    <div class="exercise__content user__vision__exercise">
+        <h1 th:text="${exercise.getName()}"></h1>
+        <img th:src="'/storage/images/' + ${exercise.getImageName()}" alt="" th:if="${exercise.getImageName()} != null">
+        <span th:text="${exercise.getMainContent()}"></span>
+    </div>
+</main>
+
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>
+
+<script th:src="@{'JS/themeJs.js'}"></script>

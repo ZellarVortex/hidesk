@@ -26,8 +26,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         http
                 .authorizeHttpRequests((request) -> request
-                        .requestMatchers("/addCourse", "/addLesson", "/addExercise", "/deleteCourse", "/myCourse").hasRole("TEACHER")
+                        .requestMatchers("/addCourse", "/addLesson", "/addExercise", "/deleteCourse", "/myCourse").hasAnyRole("ADMIN", "TEACHER")
                         .requestMatchers("/signup", "/static/*", "/image/*", "/login", "/css/style.css").permitAll()
+                        .requestMatchers("/admin/*").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .exceptionHandling(exception ->
@@ -35,7 +36,7 @@ public class SecurityConfig {
                                 .accessDeniedHandler(accessDeniedHandler()))
                 .formLogin((form) -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/main")
+                        .defaultSuccessUrl("/allCourse")
                         .permitAll()
                 )
                 .logout(LogoutConfigurer::permitAll);

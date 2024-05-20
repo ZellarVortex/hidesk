@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.List;
 
 import static com.diploma.hidesk.Global.globalMethods.resizeAndSaveImage;
 
@@ -40,5 +41,8 @@ public class ExerciseService {
 
     public Exercise getExerciseByLessonId(Long id){
         return exerciseRepo.findByLesson_Id(id);
+    }
+    public List<Exercise> getAll(){
+        return exerciseRepo.findAll();
     }
 }

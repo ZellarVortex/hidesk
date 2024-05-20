@@ -16,13 +16,17 @@ public class Course {
     private Long id;
     private String imageName;
     private String name;
+    @Column(length = 1000)
     private String description;
-    @Column(length = 500)
+    @Column(length = 1000)
     private String whatIsTaught;
+    @Column(length = 1000)
     private String about;
+    @Column(length = 1000)
     private String forWho;
+    @Column(length = 1000)
     private String requirements;
     @JoinColumn(name = "user_id")
-    @ManyToOne
+    @ManyToOne()
     private UserModel author;
 }

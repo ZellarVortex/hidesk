@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
+    <title>Добавление уроков</title>
+</head>
+<body>
+<th:block th:insert="~{fragments/header :: header}"></th:block>
+<div class="page__name">
+    <div class="container">
+        <span th:text="${course.getName()}"></span>
+    </div>
+</div>
+<main class="container">
+    <div class="lesson__page" >
+        <input type="hidden" name="courseId" th:value="${course.getId()}">
+        <div class="lesson__info">
+            <img th:src="@{'/storage/images/' + ${course.getImageName()}}">
+            <div class="lesson__info__menu">
+                <a th:href="@{/coursePage(courseId=${course.getId()})}" class="lesson__info__save button__hover">Описание</a>
+                <a href="" class="a__hover">Содержание</a>
+                <a th:href="@{/unsubscribe(courseId=${course.getId()})}" class="a__hover" onclick="return confirmDelete()">Отписаться</a>
+            </div>
+        </div>
+        <div class="lesson__list">
+            <span>Программа Курса</span>
+            <div class="alllessons__list">
+                <input type="hidden" name="lessonName">
+                <div class="lesson" th:if="${lesson_list.size()} > 0" th:each="lesson : ${lesson_list}">
+                    <img src="/image/baseImage.svg" alt="">
+                    <div class="input-container">
+                        <input type="hidden" name="lesson_id" th:value="${lesson.getId()}">
+                        <input type="text" disabled th:value="${lesson.getName()}" name="lessonName" class="custom-input" placeholder="Введите название урока" minlength="10" maxlength="50">
+                    </div>
+                    <a th:href="@{/exercisePage(lessonId=${lesson.getId()})}" class="link-icon">></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>
+
+<script th:src="@{'JS/themeJs.js'}"></script>

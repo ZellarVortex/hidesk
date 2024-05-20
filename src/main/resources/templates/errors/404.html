@@ -7,10 +7,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" th:href="@{/css/style.css}"/>
     <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
-    <title>Главная</title>
+    <title>403</title>
+
+    <style>
+        *{
+            text-align: center;
+        }
+        h1{
+            margin: 100px 0;
+        }
+        footer{
+            margin-top: 300px;
+        }
+    </style>
+
 </head>
 <body>
 <th:block th:insert="~{fragments/header :: header}"></th:block>
+
+<h1>Вы открыли достижение!</h1>
+<h1>Впервый, была найдена ошибка 404!</h1>
+<a th:href="@{/main}" class="a__hover submit__button">Вернуться на главную</a>
 
 <th:block th:insert="~{fragments/footer :: footer}"></th:block>
 </body>

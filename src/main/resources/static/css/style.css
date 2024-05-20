@@ -19,25 +19,6 @@ html, body{
     transition: background-color 500ms;
     background-color: #FFA500;
 }
-.a__hover {
-    position: relative;
-}
-
-.a__hover::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: -1px; /* Вы можете изменить это значение, чтобы установить желаемое расстояние между элементом и полосой */
-    width: 100%;
-    height: 1px; /* Высота полосы */
-    background-color: black; /* Цвет полосы */
-    transition: width 500ms; /* Длительность анимации */
-    transform: scaleX(0); /* Изначально ширина полосы равна 0 */
-}
-
-.a__hover:hover::after {
-    transform: scaleX(1); /* При наведении ширина полосы увеличивается до 100% */
-}
 .header__info__name{
     display: flex;
     justify-content: space-between;
@@ -381,10 +362,15 @@ footer .footer-bottom {
 }
 .course__flex__block{
     display: flex;
+    width: 100%;
     margin: 10px 0;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgba(63, 63, 63, 0.24);
 }
 .course__flex__block img{
     width: 150px;
+    border-radius: 10px;
 }
 .course__flex__info{
     display: flex;
@@ -423,4 +409,26 @@ footer .footer-bottom {
     display: flex;
     flex-wrap: wrap;
     margin: 100px 0 150px;
+}
+
+/* Поиск курсов */
+
+.form__search__course{
+    display: flex;
+    justify-content: center;
+    margin: 30px 0;
+}
+.form__search__course input{
+    flex-basis: 700px;
+    margin: 0 30px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+/* Страница Задания */
+
+.user__vision__exercise span{
+    word-break: break-word;
+    white-space: pre-wrap;
 }

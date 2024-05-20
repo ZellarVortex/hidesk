@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
+    <title>Document</title>
+
+    <style>
+        /* Стили для details */
+        details {
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        summary {
+            background-color: #ff8c00; /* оранжевый фон */
+            color: white; /* белый текст */
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+
+        /* Стили для таблицы */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd; /* серая граница между ячейками */
+        }
+
+        th {
+            background-color: #ff8c00; /* оранжевый фон */
+            color: white; /* белый текст */
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2; /* светло-серый фон для четных строк */
+        }
+        tr:nth-child(odd) {
+            background-color: #a4a4a4; /* светло-серый фон для четных строк */
+        }
+    </style>
+
+</head>
+<body>
+<th:block th:insert="~{fragments/header :: header}"></th:block>
+
+<details>
+    <summary>Пользователи</summary>
+    <table>
+        <tr>
+            <th>ID пользователя</th>
+            <th>ФИО</th>
+            <th>Номер телефона</th>
+            <th>Роль</th>
+            <th>Email</th>
+            <th>Возраст</th>
+            <th>Удаление</th>
+            <th>Роли</th>
+        </tr>
+        <tr th:each="user : ${userList}">
+            <td th:text="${user.getId()}">Значение 1</td>
+            <td th:text="${user.getRole()}">Значение 1</td>
+            <td th:text="${user.getFio()}">Значение 2</td>
+            <td th:text="${user.getNumber()}">Значение 3</td>
+            <td th:text="${user.getEmail()}">Значение 4</td>
+            <td th:text="${user.getAge()}">Значение 5</td>
+            <td><a th:href="@{/admin/deleteUser(userId=${user.getId()})}" class="ignore">Удалить пользователя</a></td>
+            <td>
+                <a th:href="@{/admin/appointRoleTeacher(userId=${user.getId()})}" class="ignore">Назначить преподавателем/студентом</a><br><br>
+                <a th:href="@{/admin/appointRoleAdmin(userId=${user.getId()})}" class="ignore">Назначить администратором</a>
+            </td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Курсы</summary>
+    <table>
+        <tr>
+            <th>ID Курсы</th>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Ссылка</th>
+            <th>Удаление</th>
+        </tr>
+        <tr th:each="course : ${courseList}">
+            <td th:text="${course.getId()}">Значение 1</td>
+            <td th:text="${course.getName()}">Значение 1</td>
+            <td th:text="${course.getAuthor().getFio()}">Значение 1</td>
+            <td><a th:href="@{/addCourse(courseId=${course.getId()})}" class="ignore">Перейти, для редактирования</a></td>
+
+            <td><a th:href="@{/admin/deleteCourse(courseId=${course.getId()})}" class="ignore">Удалить курс</a></td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Уроки</summary>
+    <table>
+        <tr>
+            <th>ID урока</th>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Ссылка</th>
+            <th>Удаление</th>
+        </tr>
+        <tr th:each="lesson : ${lessonList}">
+            <td th:text="${lesson.getId()}">Значение 1</td>
+            <td th:text="${lesson.getName()}">Значение 1</td>
+            <td th:text="${lesson.getCourse().getAuthor().getFio()}">Значение 1</td>
+            <td><a th:href="@{/addLesson(courseId=${lesson.getCourse().getId()})}" class="ignore">Перейти, для редактирования</a></td>
+
+            <td><a th:href="@{/admin/deleteLesson(lessonId=${lesson.getId()})}" class="ignore">Удалить урок</a></td>
+        </tr>
+    </table>
+</details>
+
+<details>
+    <summary>Задания</summary>
+    <table>
+        <tr>
+            <th>ID задания</th>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Ссылка</th>
+            <th>Удаление</th>
+        </tr>
+        <tr th:each="exercise : ${exerciseList}">
+            <td th:text="${exercise.getId()}">Значение 1</td>
+            <td th:text="${exercise.getName()}">Значение 1</td>
+            <td th:text="${exercise.getLesson().getCourse().getAuthor().getFio()}">Значение 1</td>
+            <td><a th:href="@{/addExercise(lessonId=${exercise.getLesson().getId()})}" class="ignore">Перейти, для редактирования</a></td>
+
+            <td><a th:href="@{/admin/deleteExercise(exerciseId=${exercise.getId()})}" class="ignore">Удалить задание</a></td>
+        </tr>
+    </table>
+</details>
+
+<th:block th:insert="~{fragments/footer :: footer}"></th:block>
+</body>
+</html>
+
+<script src="/JS/themeJs.js"></script>

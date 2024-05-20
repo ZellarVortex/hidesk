@@ -18,19 +18,19 @@
     </div>
 </div>
 <main class="container">
-    <form th:action="@{/addExercise}" enctype="multipart/form-data" method="post" >
+    <form th:action="@{/addExercise}" enctype="multipart/form-data" method="post">
         <div class="exercise__content">
             <input type="hidden" name="lessonId" th:value="${lesson.getId()}">
             <input type="hidden" th:if="${exercise}" name="exerciseId" th:value="${exercise.getId()}">
             <label class="input__exercise__name">
-                <input th:if="${exercise}" th:value="${exercise.getName()}" type="text" name="name" placeholder="Введите название">
-                <input th:unless="${exercise}" type="text" name="name" placeholder="Введите название">
+                <input th:if="${exercise}" th:value="${exercise.getName()}" type="text" name="name" placeholder="Введите название" required>
+                <input th:unless="${exercise}" type="text" name="name" placeholder="Введите название" required>
             </label>
             <label class="exercise__file__upload__label" for="file__upload">Добавить изображение</label>
-            <input type="file" name="imageName" id="file__upload" accept="image/*" onchange="checkFileSize(this)">
+            <input type="file" name="imageName" id="file__upload" accept="image/*" onchange="checkFileSize(this)" required>
             <label class="textarea__exercise__content">
-                <textarea th:if="${exercise}" name="mainContent" cols="30" rows="10" placeholder="Введите информацию о задании">[[${exercise.getMainContent()}]]</textarea>
-                <textarea th:unless="${exercise}" name="mainContent" cols="30" rows="10" placeholder="Введите информацию о задании"></textarea>
+                <textarea th:if="${exercise}" name="mainContent" cols="30" rows="10" placeholder="Введите информацию о задании" required>[[${exercise.getMainContent()}]]</textarea>
+                <textarea th:unless="${exercise}" name="mainContent" cols="30" rows="10" placeholder="Введите информацию о задании" required></textarea>
             </label>
             <div class="exercise__bottom__menu">
                 <input type="submit" class="button__hover lesson__info__save" value="Сохранить">
