@@ -2,13 +2,17 @@ package com.diploma.hidesk.Model.AuthModel;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.Set;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 @Setter
 @Table(name = "user")
 public class UserModel {

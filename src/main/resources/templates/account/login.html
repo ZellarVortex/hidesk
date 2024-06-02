@@ -41,29 +41,28 @@
             </div>
             <div class="form-group">
                 <label for="name"></label>
-                <input type="text" id="name" name="name" placeholder="Введите ваше имя">
+                <input type="text" id="name" name="name" placeholder="Введите ваше имя" required >
             </div>
             <div class="form-group">
                 <label for="surname"></label>
-                <input type="text" id="surname" name="surname" placeholder="Введите вашу фамилию">
+                <input type="text" id="surname" name="surname" placeholder="Введите вашу фамилию" required>
             </div>
             <div class="form-group">
                 <label for="lastname"></label>
-                <input type="text" id="lastname" name="lastname" placeholder="Введите ваше отчество">
+                <input type="text" id="lastname" name="lastname" placeholder="Введите ваше отчество" required>
             </div>
             <div class="form-group">
                 <label for="age"></label>
-                <input type="number" id="age" name="age" placeholder="Введите ваш возраст">
+                <input type="number" id="age" name="age" placeholder="Введите ваш возраст" required>
             </div>
             <div class="form-group">
                 <label for="number"></label>
-                <input type="tel" id="number" name="number" placeholder="Введите ваш номер телефона">
+                <input type="tel" id="number" name="number" placeholder="Введите ваш номер телефона" required>
             </div>
-            <div class="form-group">
+            <div class="form-group" style="display: none">
                 <label for="role"></label>
                 <select id="role" name="role">
-                    <option value="Teacher">Учитель</option>
-                    <option value="Student">Студент</option>
+                    <option value="Student" selected>Студент</option>
                 </select>
             </div>
             <div class="form-group">

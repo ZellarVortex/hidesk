@@ -2,11 +2,11 @@
     <nav class="container">
         <div><a th:href="@{/}"><img src="/image/Logo.svg" alt="Логотип"></a></div>
         <div class="nav-header">
-            <a th:href="@{/myCourse}" sec:authorize="hasRole('TEACHER')">Мои курсы</a>
+            <a th:href="@{/myCourse}" sec:authorize="hasRole('TEACHER')">Существующие категории</a>
             <a th:href="@{/userSubscriptions}" sec:authorize="hasRole('STUDENT')">Мое обучение</a>
             <a th:href="@{/profile}"><img th:src="@{image/profileBlack.svg}" id="profile" alt=""></a>
-            <a th:href="@{/addCourse}" class="dynamic__button" sec:authorize="hasRole('TEACHER') or hasRole('ADMIN')">Создать курс</a>
-            <a th:href="@{/}" class="dynamic__button" sec:authorize="hasRole('STUDENT')">Искать курс</a>
+            <a th:href="@{/addCourse}" class="dynamic__button" sec:authorize="hasRole('ADMIN')">Добавить категорию</a>
+            <a th:href="@{/}" class="dynamic__button" sec:authorize="hasRole('STUDENT')">Найти материал</a>
             <img src="/image/moon.svg" id="theme-switcher" class="theme-switcher" onclick="toggleTheme()" alt="текст"/>
         </div>
     </nav>

@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ваши курсы</title>
+    <title>Существующие категории</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="icon" type="image/png" th:href="@{/image/ico.png}" />
 </head>
@@ -13,7 +13,7 @@
 <th:block th:insert="~{fragments/header :: header}"></th:block>
 
 <main class="container">
-    <h1>Ваши курсы</h1>
+    <h1>Существующие категории</h1>
     <div class="course__flex">
     <div th:each="course : ${courses}" class="course__flex__block">
         <div>

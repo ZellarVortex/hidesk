@@ -25,11 +25,11 @@
             <input type="submit" class="lesson__info__save button__hover" value="Сохранить">
             <a th:href="@{/addCourse(courseId=${course.getId()})}" class="a__hover">Описание</a>
             <a href="" class="a__hover">Содержание</a>
-            <a th:href="@{/deleteCourse(courseId=${course.getId()})}" class="a__hover" onclick="return confirmDelete()">Удалить курс</a>
+            <a th:href="@{/deleteCourse(courseId=${course.getId()})}" class="a__hover" onclick="return confirmDelete()">Удалить категорию</a>
             </div>
         </div>
         <div class="lesson__list">
-            <span>Программа Курса</span>
+            <span>Программа категории курса</span>
             <div class="alllessons__list">
                 <input type="hidden" name="lessonName">
                 <div class="lesson" th:if="${lesson_list.size()} > 0" th:each="lesson : ${lesson_list}">
@@ -89,7 +89,7 @@
 
     <script>
         function confirmDelete() {
-            var result = confirm("Вы уверены, что хотите удалить курс?");
+            var result = confirm("Вы уверены, что хотите удалить категорию?");
 
             if (result) {
                 return true;
